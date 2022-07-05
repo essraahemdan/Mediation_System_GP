@@ -20,13 +20,13 @@ public class ChilkatExample {
         }
     }
 
-    public static void main(String argv[]){
+    public static void asnToXml(String sourcPath, String destPath){
         CkAsn asn = new CkAsn();
 
         boolean success;
 
         //  Begin with loading ASN.1 from a binary DER/BER format file.
-        success = asn.LoadBinaryFile("src\\ASNcdrs\\upstream_server1_New_CDR.ber");
+        success = asn.LoadBinaryFile(sourcPath);
         if (success != true) {
             System.out.println("error with load: "+asn.lastErrorText());
             return;
@@ -48,9 +48,9 @@ public class ChilkatExample {
         System.out.println(xml.getXml());
 
         try {
-            File myObj = new File("src\\XMLcdrs\\filename.xml");
+            File myObj = new File("src\\XMLcdrs\\cdr1.xml");
             if (myObj.createNewFile()) {
-                FileWriter myWriter = new FileWriter("src\\XMLcdrs\\filename.xml");
+                FileWriter myWriter = new FileWriter("src\\XMLcdrs\\cdr1.xml");
                 myWriter.write(xml.getXml());
                 myWriter.close();
                 System.out.println("File created: " + myObj.getName());
